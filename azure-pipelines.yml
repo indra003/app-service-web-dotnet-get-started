@@ -28,18 +28,9 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-  
-  
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'ba-am-eus2-appdev'
-    subscriptionId: '3cd25984-7c62-4460-8faf-7f9e122af226'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'AT28510_EUS2_DEV'
-    location: 'East Asia'
-    templateLocation: 'URL of the file'
-    csmFileLink: 'https://devcloud.ubs.net/t665166/Documentation/-/blob/undefined/template.json'
-    csmParametersFileLink: 'https://devcloud.ubs.net/t665166/Documentation/-/blob/undefined/parameters.json'
-    deploymentMode: 'Validation'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'pipeline artifacts'
+    publishLocation: 'pipeline'
