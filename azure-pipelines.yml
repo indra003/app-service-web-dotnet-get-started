@@ -27,12 +27,7 @@ steps:
     organization: 'indra0103'
     scannerMode: 'MSBuild'
     projectKey: 'indra0103'
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+
 
 - task: SonarCloudPublish@1
   inputs:
